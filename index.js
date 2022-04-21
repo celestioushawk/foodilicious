@@ -14,6 +14,8 @@ const bcrypt = require('bcrypt')
 const bodyparser = require('body-parser')
 app.use(bodyparser.urlencoded({extended:false}))
 
+const port = process.env.PORT || 3000;
+
 app.set('view engine', 'ejs');
 
 //middleware
@@ -21,7 +23,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(cookieParser());
 
-const dbURI = "mongodb+srv://foodieadmin:admin123@cluster0.o2x6n.mongodb.net/foodies?retryWrites=true&w=majority";
+const dbURI = `mongodb+srv://foodieadmin:${process.env.DB_PASS}@cluster0.o2x6n.mongodb.net/foodies?retryWrites=true&w=majority`;
 db.connect(dbURI)
 .then(() => console.log("connected to DB"))
 .catch((err) => console.log("failed to connect: " + err))
@@ -350,4 +352,4 @@ app.get('/random', checkUser, requireAuth, (req, res) => {
 
 app.use(authRoutes);
 
-app.listen(3000, () => console.log("server listening at port 3000"));
+app.listen(port, () => console.log("server listening at port 3000"));
