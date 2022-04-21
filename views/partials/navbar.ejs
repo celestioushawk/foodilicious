@@ -1,0 +1,78 @@
+<style>
+    nav{
+    display: flex;
+    padding: 2% 5%;
+    justify-content: space-between;
+    height: 10vh;
+    align-items: center;
+    background-color: #CFD8DC;
+    border-bottom: 2px solid #CFD8DC;
+}
+nav .logo{
+    font-size: 2rem;
+    font-weight: 700;
+}
+nav .logo a{
+    color: inherit;
+    text-decoration: none;
+}
+nav .links{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+nav .links button{
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #263238;
+    color: white;
+}
+nav .links button a{
+    color: inherit;
+    text-decoration: none;
+}
+.saved-recipes a{
+    font-size: 2rem;
+    color: #263238;
+}
+.userprofile a{
+    color: inherit;
+    font-size: 2rem;
+    color: #263238;
+}
+
+</style>
+<nav>
+    <div class="logo">
+        <a href="/">Foodilicious <i class="fa-solid fa-utensils"></i></a>
+    </div>
+    <div class="links">
+        <% if (user) { %>
+        <div class="info">
+            Hi, <%= user.firstName %> ! 
+        </div>
+        <div class="add-recipe-btn">
+            <button><a href="/addRecipe"><i class="fa-solid fa-plus"></i> Add Recipe</a></button>
+        </div>
+        <div class="logout-btn">
+            <button><a href="/logout">Log Out</a></button>
+        </div>
+        <div class="saved-recipes">
+            <a href="/savedRecipes"><i class="fa-solid fa-bookmark"></i></a>
+        </div>
+        <div class="userprofile">
+            <a href="/profile/<%= user.id %> "><i class="fa-solid fa-user"></i></a>
+        </div>
+        <% } else { %>
+        <div class="login-btn">
+            <button><a href="/login">Log In</a></button>
+        </div>
+        <div class="signup-btn">
+            <button><a href="/signup">Sign Up</a></button>
+        </div>
+        <% } %>
+    </div>
+</nav>

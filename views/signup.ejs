@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    <title>Foodilicious | Sign Up</title>
+    
+</head>
+<body>
+
+    <div class="container">
+        <div class="left">
+            <img src="/signup.png" alt="">
+        </div>
+        <div class="signup-card">
+            <h1>Foodilicious.</h1>
+            <h2>Sign Up.</h2>
+            <form action="/signup">
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName">
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <label for="password">Password</label>
+                <input type="password" name="passowrd" id="password">
+                <input type="submit" value="Sign Up">
+            </form>
+            <a href="/login">Already a member? Sign In.</a>
+        </div>
+        
+    </div>
+
+    <script>
+        const form = document.querySelector('form')
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = form.email.value;
+            const password = form.password.value;
+            const firstName = form.firstName.value;
+            const lastName = form.lastName.value;
+
+            try 
+            {
+                const res = await fetch('/signup', {
+                    method : 'POST',
+                    body : JSON.stringify({ firstName, lastName, email, password }),
+                    headers : { 'Content-Type' : 'application/json' }
+                });
+                const data = await res.json();
+                if(data._id)
+                {
+                    location.assign('/login')
+                }
+
+            } 
+            catch (error) 
+            {
+                console.log(error);
+            }
+
+            
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="index.css">
+    <title>Your Saved Recipes</title>
+</head>
+<body>
+
+    <%- include('partials/navbar.ejs') %> 
+    <div class="header">
+        <h1>My Saved Recipes</h1>
+    </div>
+    <div class="container">
+        <% saved.forEach(recipe => { %>
+            <div class="card">
+                <div class="card_body">
+                    <img src="images/<%= recipe.image %> " alt="momos" class="card_img">
+                    <h2 class="card_title">
+                        <%= recipe.name %> 
+                    </h2>
+                    <p class="card_description">
+                        <i class="fa-solid fa-user"></i> <%= recipe.author %> 
+                    </p>
+                </div>
+                <button class="card_btn recipe-link"><a href="/recipe/<%= recipe._id %> " class="recipe-link">View Recipe</a></button>
+            </div>
+        <% }) %>
+            
+        
+    </div>
+</body>
+</html>

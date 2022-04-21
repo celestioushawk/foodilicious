@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title><%= userdata.firstName + " " + userdata.lastName %>'s Profile | Foodilicious</title>
+</head>
+<body>
+    <%- include('partials/navbar.ejs') %> 
+    <!-- <p>
+        Hi, <%= userdata.firstName %>
+    </p>
+    <p>
+        <%= userdata.email %>
+    </p> 
+    <p>
+        <% recipes.forEach(recipe => { %>
+            <h1>
+                <%= recipe.category %>
+            </h1> 
+        <% }) %>
+    </p> -->
+    <div class="container">
+        <div class="header">
+
+        </div>
+        <div class="content">
+            <div class="profile-content">
+                <h1><%= userdata.firstName + " " + userdata.lastName %></h1>
+                <p><%= userdata.email %></p>
+            </div>
+            <div class="recipes-content">
+                <h1>
+                    <% if (tokenid == userdata._id) { %>
+                     Your
+                    <% } else { %>
+                        <%= userdata.firstName %>'s 
+                        <% } %>
+                     Recipes</h1>
+                <div class="card-container">
+                    <% recipes.forEach(recipe => { %>
+                        <div class="card">
+                            <div class="card_body">
+                                <img src="/images/<%= recipe.image %> " alt="momos" class="card_img">
+                                <div class="title-delete">
+                                    <h2 class="card_title">
+                                        <%= recipe.name %>
+                                    </h2>
+                                    <% if (tokenid == userdata._id) { %>
+                                        <p>
+                                            <a href="/delete-recipe/<%= recipe._id %> "><i class="fa-solid fa-trash"></i></a>
+                                        </p>
+                                    <% } %>
+                                    
+                                </div>
+                                
+                                <p class="card_description">
+                                    <i class="fa-solid fa-user"></i> <%= recipe.author %> 
+                                </p>
+                            </div>
+                            <button class="card_btn recipe-link"><a href="/recipe/<%= recipe._id %> " class="recipe-link">View Recipe</a></button>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

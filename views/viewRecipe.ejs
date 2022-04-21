@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="viewrecipe.css">
+    <title><%= recipe.name %> | Full Recipe | Foodilicious </title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2% 20%;
+        font-size: 1.2rem;
+        gap: 1rem;
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .image{
+        height: 60vh;
+        display: flex;
+        justify-content: center;
+    }
+    .title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .title a{
+        color: inherit;
+        font-size: 2rem;
+    }
+    .category{
+        background-color: #CFD8DC;
+        width: fit-content;
+        padding: 0.5rem 1rem;
+    }
+    .author{
+        display: flex;
+        gap: 1rem;
+    }
+    .ingredients{
+       display: flex;
+       flex-direction: column;
+       gap: 0.5rem;
+    }
+    .instructions{
+        line-height: 1.5;
+    }
+    h1{
+        font-size: 5rem;
+    }
+    h2{
+        font-size: 3rem;
+    }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar.ejs') %> 
+    <div class="container">
+        <div class="image">
+            <img src="/images/<%= recipe.image %> " alt="">
+        </div>
+        <div class="title">
+            <h1>
+                <%= recipe.name %> 
+            </h1>
+            <a href="/saveRecipe/<%= recipe._id %> ">
+                <i class="fa-regular fa-bookmark"></i>
+            </a>
+        </div>
+        <div class="category">
+            <p>
+                <%= recipe.category %> 
+            </p>
+        </div>
+        <div class="author">
+            <i class="fa-solid fa-user"></i>
+            <p>
+                <%= author %> 
+            </p>
+        </div>
+        <div class="ingredients">
+            <h2>Ingredients</h2>
+            <% recipe.ingredients.forEach(ing => { %>
+                <p>
+                    <%= ing %> 
+                </p>
+            <% }) %>
+        </div>
+        <div class="instructions">
+            <h2>Instructions</h2>
+            <p>
+                <%= recipe.instructions %> 
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+.header{
+    padding: 1% 5%;
+    font-size: 1.5rem;
+    margin-bottom: -2rem;
+}
+nav{
+    display: flex;
+    padding: 2% 5%;
+    justify-content: space-between;
+    height: 10vh;
+    align-items: center;
+    background-color: #CFD8DC;
+    border-bottom: 2px solid #CFD8DC;
+}
+nav .logo{
+    font-size: 2rem;
+    font-weight: 700;
+}
+nav .logo a{
+    color: inherit;
+    text-decoration: none;
+}
+nav .links{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+nav .links button{
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #263238;
+    color: white;
+}
+.saved-recipes a{
+    font-size: 2rem;
+    color: #263238;
+}
+nav .links button a{
+    text-decoration: none;
+    color: inherit; 
+}
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2% 5%;
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+.userprofile a{
+    color: inherit;
+    font-size: 2rem;
+    color: #263238;
+}
+.card {
+    overflow: hidden;
+    margin: 1rem;
+    border-radius: 5px;
+    border: 1px solid #9f9f9f;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 200ms ease-in;
+}
+
+
+
+.card_img {
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card_title {
+    padding: 1rem;
+}
+
+.card_description {
+    padding: 0 1rem;
+}
+
+.card_btn {
+    padding: 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 1.5rem 1rem;
+    background: #263238;
+    border: none;
+    border-radius: 0.2rem;
+    color: white;
+    cursor: pointer;
+    transition: white 200ms ease-in, color 200ms ease-in;
+}
+
+.card_btn a{
+    color: inherit;
+    text-decoration: none;
+    color: white;
+}
+.card_btn:hover {
+    opacity: 0.8;
+}

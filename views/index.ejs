@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="index.css">
+    <title>Foodilicious | Home</title>
+</head>
+<body>
+    <!-- <% if (user) { %>
+        <p>Welcome, <%= user.email %> </p>
+        <a href="/logout">Log Out</a>
+    <% } else { %>
+        <a href="/login">Log In</a>
+        <a href="/signup">Sign Up</a>
+    <% } %> -->   
+    <nav>
+        <div class="logo">
+            <a href="/">Foodilicious <i class="fa-solid fa-utensils"></i></a>
+        </div>
+        <div class="links">
+            <% if (user) { %>
+            <div class="info">
+                Hi, <%= user.firstName %> ! 
+            </div>
+            <div class="add-recipe-btn">
+                <button><a href="/addRecipe"><i class="fa-solid fa-plus"></i> Add Recipe</a></button>
+            </div>
+            <div class="logout-btn">
+                <button><a href="/logout">Log Out</a></button>
+            </div>
+            <div class="saved-recipes">
+                <a href="/savedRecipes"><i class="fa-solid fa-bookmark"></i></a>
+            </div>
+            <div class="userprofile">
+                <a href="/profile/<%= user.id %> "><i class="fa-solid fa-user"></i></a>
+            </div>
+            <% } else { %>
+            <div class="login-btn">
+                <button><a href="/login">Log In</a></button>
+            </div>
+            <div class="signup-btn">
+                <button><a href="/signup">Sign Up</a></button>
+            </div>
+            <% } %>
+        </div>
+    </nav> 
+
+    <div class="container">
+        <% recipes.forEach(recipe => { %>
+            <div class="card">
+                <div class="card_body">
+                    <img src="images/<%= recipe.image %> " alt="momos" class="card_img">
+                    <h2 class="card_title">
+                        <%= recipe.name %>
+                    </h2>
+                    <p class="card_description">
+                        <i class="fa-solid fa-user"></i> <%= recipe.author %> 
+                    </p>
+                </div>
+                <button class="card_btn recipe-link"><a href="/recipe/<%= recipe._id %> " class="recipe-link">View Recipe</a></button>
+            </div>
+        <% }) %>
+            
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="submit-recipe.css">
+    <title>Submit Recipe</title>
+  </head>
+  <body>
+    <div>
+      <h1>Submit Your Recipe</h1>
+      <div>
+        <p>Share your amazing recipes</p>
+      </div>
+      <div>
+        <div class="col-8">
+          <form action="/addRecipe" method="POST" enctype="multipart/form-data">
+            <div>
+              <div>
+                <label for="name" class="form-label">Recipe Name</label>
+                <input type="text" name="name" id="name" />
+              </div>
+
+              <div>
+                <label for="instructions" class="form-label"
+                  >Instructions</label
+                >
+                <textarea
+                  name="instructions"
+                  id="instructions"
+                  cols="30"
+                  rows="4"
+                ></textarea>
+              </div>
+
+              <div>
+                <label for="name">Ingredients</label>
+                <small>Example: Ice</small>
+                <div class="IngredientList">
+                  <div class="IngredientDiv mb-1">
+                    <input type="text" name="ingredients" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  id="addIngredientBtn"
+                >
+                  + Ingredient
+                </button>
+              </div>
+
+              <div>
+                <label for="category">Select Category</label>
+                <select name="category" aria-label="Category">
+                  <option selected>Select Category</option>
+                  <option value="Thai">Thai</option>
+                  <option value="American">American</option>
+                  <option value="Chinese">Chinese</option>
+                  <option value="Mexican">Mexican</option>
+                  <option value="Indian">Indian</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="image">Recipe Image</label>
+                <input type="file" name="image" />
+              </div>
+
+              <div>
+                <button type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      let addIngredientBtn = document.getElementById("addIngredientBtn");
+      let ingredientList = document.querySelector(".IngredientList");
+      let ingredientDiv = document.querySelectorAll(".IngredientDiv")[0];
+
+      addIngredientBtn.addEventListener("click", function () {
+        let newIngredients = ingredientDiv.cloneNode(true);
+        let input = newIngredients.getElementsByTagName("input")[0];
+        input.value = "";
+        ingredientList.appendChild(newIngredients);
+      });
+    </script>
+  </body>
+</html>
