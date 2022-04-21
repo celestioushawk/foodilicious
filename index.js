@@ -307,7 +307,7 @@ app.get('/delete-recipe/:recipeid', requireAuth, checkUser, (req, res) => {
     {
       Recipe.deleteOne({ _id : recipeid })
       .then((result1) => {
-        res.json("recipe deleted")
+        res.render('recipeDeleted')
       })
       .catch((err) => {
         res.json("could not delete recipe")

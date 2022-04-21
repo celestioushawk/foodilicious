@@ -96,11 +96,11 @@ module.exports.forgot_password_post = async (req, res) => {
     createdAt: Date.now(),
   }).save();
 
-  const link = `http://localhost:3000/reset-password/${resetToken}/${user._id}`;
+  const link = `https://foodilicious-web-app.herokuapp.com/reset-password/${resetToken}/${user._id}`;
   console.log(link)
 
 
-  const currentUrl = "http://localhost:3000/";
+  const currentUrl = "https://foodilicious-web-app.herokuapp.com/";
     
 
     const mailOptions = {
