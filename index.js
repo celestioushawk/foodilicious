@@ -55,36 +55,6 @@ app.get('/', checkUser, (req, res) => {
 
 
 
-/* app.post('/passwordReset/:token/:userid', async (req, res) => {
-  const newpass = req.body.newpassword;
-  const userdd = req.params.userid;
-  const token = req.params.token;
-  console.log("new pass recieved " + newpass);
-  console.log("userid recieved " + req.params.userid);
-  console.log("token recieved " + req.params.token);
-
-
-  let passwordResetToken = await Token.findById(userdd);
-  if (!passwordResetToken) {
-    throw new Error("Invalid or expired password reset token");
-  }
-  const isValid = await bcrypt.compare(token, passwordResetToken.token);
-  if (!isValid) {
-    throw new Error("Invalid or expired password reset token");
-  }
-  //const hash = await bcrypt.hash(password, Number(bcryptSalt));
-  await User.updateOne(
-    { userId: userdd },
-    { $set: { password: newpass } },
-    { new: true }
-  );
-})
-
-
-app.get('/passwordReset/:token/:userid', (req, res) => {
-  res.render('changepassword');
-})
- */
 
 
 
@@ -184,95 +154,6 @@ app.get('/savedRecipes', checkUser, requireAuth, (req, res) => {
 
 
 
-/* app.get('/forgotPassword', (req, res) => {
-  res.render('forgotpassword');
-})
-
-
-const sendVerificationMail = ({_id, email, uniqueToken}, res) => {
-    
-  const currentUrl = "http://localhost:4000/";
-  
-
-  const mailOptions = {
-      from: process.env.AUTH_EMAIL,
-      to: email,
-      subject: "Verify your Email",
-      html: `<p> Click <a href=${currentUrl + "user/verify" + "/" + uniqueToken}>here</a> to verify your mail </p>`
-  }
-
-  transporter.sendMail(mailOptions)
-  .then(() => {
-      res.json("Mail Sent!")
-  })
-  .catch((err) => {
-      res.json(err);
-  });
-
-}
- */
-
-/* app.post('/sendResetPasswordEmail', async(req, res) => {
-  const email = req.body.email;
-  console.log("email recieved: " + email)
-  const user = await User.findOne({ email });
-
-  if (!user) {
-      console.log("User does not exist");
-  }
-  token = await Token.findOne({ userId: user._id });
-  if (token) { 
-        await token.deleteOne()
-  };
-
-  if (!user) throw new Error("User does not exist");
-  token = await Token.findOne({ userId: user._id });
-  if (token) await token.deleteOne();
-  let resetToken = crypto.randomBytes(32).toString("hex");
-  const hash = await bcrypt.hash(resetToken, 10);
-
-  await new Token({
-    userId: user._id,
-    token: hash,
-    createdAt: Date.now(),
-  }).save();
-
-  const link = `http://localhost:3000/passwordReset/${resetToken}/${user._id}`;
-  //sendEmail(user.email,"Password Reset Request",{name: user.name,link: link,},"./template/requestResetPassword.handlebars");
-  //return link;
-  console.log(link);
-});
- */
-
-/* app.post('/passwordReset/:token/:userid', async (req, res) => {
-  const newpass = req.body.newpass;
-  const userdd = req.params.userid;
-  const token = req.params.token;
-  console.log("new pass recieved " + newpass);
-  console.log("userid recieved " + req.params.userid);
-  console.log("token recieved " + req.params.token);
-
-
-  let passwordResetToken = await Token.findById(userdd);
-  if (!passwordResetToken) {
-    throw new Error("Invalid or expired password reset token");
-  }
-  const isValid = await bcrypt.compare(token, passwordResetToken.token);
-  if (!isValid) {
-    throw new Error("Invalid or expired password reset token");
-  }
-  //const hash = await bcrypt.hash(password, Number(bcryptSalt));
-  await User.updateOne(
-    { userId: userdd },
-    { $set: { password: newpass } },
-    { new: true }
-  );
-}) */
-
-
-/* app.get('/passwordReset/:token/:userid', (req, res) => {
-  res.render('changepassword');
-}) */
 
 
 

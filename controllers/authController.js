@@ -2,8 +2,27 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt')
 
-const handleErrors = (error) => {
-    console.log(error.message, error.code);
+const handleErrors = (err) => {
+    console.log(err.message, err.code);
+    let errors = { email: 'Incorrect Email', password: 'Incorrect Password' };
+  
+    // duplicate email error
+    if (err.code === 11000) {
+      errors.email = 'that email is already registered';
+      return errors;
+    }
+  
+    // validation errors
+    if (err.message.includes('user validation failed')) {
+      // console.log(err);
+      Object.values(err.errors).forEach(({ properties }) => {
+        // console.log(val);
+        // console.log(properties);
+        errors[properties.path] = properties.message;
+      });
+    }
+  
+    return errors;
 }
 
 const createToken = (id) => {
@@ -32,8 +51,8 @@ module.exports.login_post = async (req, res) => {
         res.status(200).json(user);
 
     } catch (err) {
-        handleErrors(err);
-      res.status(400).json({});
+        const errors = handleErrors(err);
+      res.status(400).json({ errors });
     }
   
   }
@@ -49,8 +68,8 @@ module.exports.signup_post = (req, res) => {
         res.status(201).json(success);
     })
     .catch((err) => {
-        console.log(err);
-        res.json(err);
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
     })     
 }
 

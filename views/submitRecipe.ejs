@@ -17,13 +17,13 @@
         </h1>
         <form action="/addRecipe" method="POST" enctype="multipart/form-data">
             <label for="name" class="form-label">Recipe Name</label>
-                <input type="text" name="name" id="name" autocomplete="off"/>
+                <input type="text" name="name" id="name" autocomplete="off" required/>
                 <label for="instructions" class="form-label">Instructions</label>
               <textarea
                 name="instructions"
                 id="instructions"
                 cols="30"
-                rows="4"></textarea>
+                rows="4" required></textarea>
 
               <label for="name">Ingredients</label>
                 <small>Example: Ice</small>

@@ -52,19 +52,24 @@
     <div class="container">
         <% recipes.forEach(recipe => { %>
             <div class="card">
-                <div class="card_body">
+                <div class="card-image">
                     <img src="images/<%= recipe.image %> " alt="momos" class="card_img">
-                    <h2 class="card_title">
-                        <%= recipe.name %>
-                    </h2>
-                    <p class="card_description">
-                        <i class="fa-solid fa-user"></i> <%= recipe.author %> 
-                    </p>
                 </div>
-                <button class="card_btn recipe-link"><a href="/recipe/<%= recipe._id %> " class="recipe-link">View Recipe</a></button>
+                <div class="card-body">
+                    <div class="card-title">
+                        <h1><%= recipe.name %></h1>
+                    </div>
+                    <div class="card-author">
+                         <p><i class="fa-solid fa-user"></i><%= recipe.author %></p>
+                    </div>
+                    <div class="card-btn">
+                        <a href="/recipe/<%= recipe._id %> " class="recipe-link"><button class="card_btn recipe-link">View Recipe</button></a>
+                    </div>
+                </div>
             </div>
         <% }) %>
             
+        
         
     </div>
 </body>

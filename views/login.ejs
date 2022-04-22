@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="login.css">
     <title>Foodilicious | Log In</title>
     <style>
-        
+        .email-error, .password-error{
+            margin-top: 0.5rem;
+        }
+        label{
+            margin-bottom: 0.2rem;
+        }
     </style>
 </head>
 <body>
@@ -21,9 +26,11 @@
             <h2>Log In.</h2>
             <form action="/login">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" required>
+                <div class="email-error"> </div>
                 <label for="password">Password</label>
-                <input type="password" name="passowrd" id="password">
+                <input type="password" name="passowrd" id="password" required>
+                <div class="password-error"> </div>
                 <input type="submit" value="Log In">
                 <p><a href="/signup">Not a member? Sign Up</a></p>
                 <p><a href="/forgot-password">Forgot Password?</a></p>
@@ -32,6 +39,8 @@
     </div>
     
     <script>
+        const emailError = document.querySelector('.email-error');
+        const passwordError = document.querySelector('.password-error');
         const form = document.querySelector('form');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -51,6 +60,12 @@
                 });
                 const data = await res.json();
                 console.log(data);
+                if(data.errors)
+                {
+                    console.log(data.errors.email)
+                    emailError.innerHTML = data.errors.email;
+                    passwordError.innerHTML = data.errors.password;
+                }
                 if(data._id)
                 {
                     location.assign('/')
@@ -60,6 +75,7 @@
             catch (error) 
             {
                 console.log(error);
+
             }
         })
     </script>

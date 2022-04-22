@@ -106,8 +106,18 @@ module.exports.forgot_password_post = async (req, res) => {
     const mailOptions = {
         from: process.env.AUTH_EMAIL,
         to: email,
-        subject: "Change Password",
-        html: `<p> Click <a href=${currentUrl + "reset-password" + "/" + resetToken + "/" + user._id}>here</a> to verify your mail </p>`
+        subject: "Foodilicious - Change Password Request",
+        html: `
+        <body>
+        <h1>Reset Password Request </h1>
+        <hr>
+        <h3>Important: This link will be valid for only 1 Hour! </h3>
+        <p> Click <a href=${currentUrl + "reset-password" + "/" + resetToken + "/" + user._id}>here</a> to change your password. </p>
+        <hr>
+        <p>Regards,</p>
+        <p>Team Foodilicious </p>
+        </body>
+        `
     }
 
     transporter.sendMail(mailOptions)
